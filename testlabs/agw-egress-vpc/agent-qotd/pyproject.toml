@@ -1,0 +1,20 @@
+[project]
+name = "agent-qotd"
+version = "0.1.0"
+description = "Quote of the Day assistant agent deployed on Vertex AI Agent Engine"
+requires-python = ">=3.10"
+dependencies = [
+    "google-cloud-aiplatform[adk,agent_engines]",
+    "google-auth>=2.0",
+    "httpx",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-httpx",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agent"]

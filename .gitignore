@@ -1,0 +1,50 @@
+# workspace
+.agent/
+.vscode/
+.gemini/
+*.code-workspace
+.old
+
+# py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# os
+.DS_Store
+
+# envs
+.env
+cfg/
+
+# venvs
+.venv/
+uv.lock
+
+# log
+*.log
+
+# cache
+.pytest_cache/
+.mypy_cache/
+.coverage
+*.egg-info/
+
+# tf
+.terraform/
+*.tfstate*
+*.tfvars*
+*override.tf*
+crash.log
+.terraformrc
+terraform.rc
+
+# sec
+secrets/
+certs/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx

@@ -1,0 +1,548 @@
+defaultRouteAction:
+  urlRewrite:
+    hostRewrite: org1.example.com
+defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+hostRules:
+- hosts:
+  - otaprd.example.com
+  pathMatcher: path-matcher-1
+- hosts:
+  - policies.telematics.example.com
+  pathMatcher: path-matcher-2
+- hosts:
+  - services.cx.example.com
+  pathMatcher: path-matcher-3
+- hosts:
+  - api.mps.example.com
+  pathMatcher: path-matcher-4
+- hosts:
+  - vehicle.api.example.com
+  pathMatcher: path-matcher-5
+kind: compute#urlMap
+name: url-map-l7-gxlb-1
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-1
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-2
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-3
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-4
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-5
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com

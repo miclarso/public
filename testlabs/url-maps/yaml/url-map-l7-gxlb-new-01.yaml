@@ -1,0 +1,413 @@
+defaultRouteAction:
+  urlRewrite:
+    hostRewrite: org1.example.com
+defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+hostRules:
+- hosts:
+  - otaprd.example.com
+  pathMatcher: path-matcher-1
+- hosts:
+  - policies.telematics.example.com
+  pathMatcher: path-matcher-2
+- hosts:
+  - services.cx.example.com
+  pathMatcher: path-matcher-3
+- hosts:
+  - api.mps.example.com
+  pathMatcher: path-matcher-4
+- hosts:
+  - vehicle.api.example.com
+  pathMatcher: path-matcher-5
+kind: compute#urlMap
+name: url-map-l7-gxlb-1
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-1
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  pathRules:
+  - paths:
+    - /api11/
+    - /api12/
+    - /api13/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - paths:
+    - /api21/
+    - /api22/
+    - /api23/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - paths:
+    - /api31/
+    - /api32/
+    - /api33/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - paths:
+    - /api41/
+    - /api42/
+    - /api43/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - paths:
+    - /api51/
+    - /api52/
+    - /api53/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - paths:
+    - /api61/
+    - /api62/
+    - /api63/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - paths:
+    - /api71/
+    - /api72/
+    - /api73/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - paths:
+    - /api81/
+    - /api82/
+    - /api83/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - paths:
+    - /api91/
+    - /api92/
+    - /api93/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-2
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  pathRules:
+  - paths:
+    - /api11/
+    - /api12/
+    - /api13/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - paths:
+    - /api21/
+    - /api22/
+    - /api23/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - paths:
+    - /api31/
+    - /api32/
+    - /api33/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - paths:
+    - /api41/
+    - /api42/
+    - /api43/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - paths:
+    - /api51/
+    - /api52/
+    - /api53/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - paths:
+    - /api61/
+    - /api62/
+    - /api63/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - paths:
+    - /api71/
+    - /api72/
+    - /api73/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - paths:
+    - /api81/
+    - /api82/
+    - /api83/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - paths:
+    - /api91/
+    - /api92/
+    - /api93/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-3
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  pathRules:
+  - paths:
+    - /api11/
+    - /api12/
+    - /api13/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - paths:
+    - /api21/
+    - /api22/
+    - /api23/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - paths:
+    - /api31/
+    - /api32/
+    - /api33/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - paths:
+    - /api41/
+    - /api42/
+    - /api43/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - paths:
+    - /api51/
+    - /api52/
+    - /api53/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - paths:
+    - /api61/
+    - /api62/
+    - /api63/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - paths:
+    - /api71/
+    - /api72/
+    - /api73/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - paths:
+    - /api81/
+    - /api82/
+    - /api83/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - paths:
+    - /api91/
+    - /api92/
+    - /api93/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-4
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  pathRules:
+  - paths:
+    - /api11/
+    - /api12/
+    - /api13/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - paths:
+    - /api21/
+    - /api22/
+    - /api23/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - paths:
+    - /api31/
+    - /api32/
+    - /api33/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - paths:
+    - /api41/
+    - /api42/
+    - /api43/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - paths:
+    - /api51/
+    - /api52/
+    - /api53/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - paths:
+    - /api61/
+    - /api62/
+    - /api63/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - paths:
+    - /api71/
+    - /api72/
+    - /api73/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - paths:
+    - /api81/
+    - /api82/
+    - /api83/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - paths:
+    - /api91/
+    - /api92/
+    - /api93/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-5
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  pathRules:
+  - paths:
+    - /api11/
+    - /api12/
+    - /api13/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - paths:
+    - /api21/
+    - /api22/
+    - /api23/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - paths:
+    - /api31/
+    - /api32/
+    - /api33/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - paths:
+    - /api41/
+    - /api42/
+    - /api43/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - paths:
+    - /api51/
+    - /api52/
+    - /api53/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - paths:
+    - /api61/
+    - /api62/
+    - /api63/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - paths:
+    - /api71/
+    - /api72/
+    - /api73/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - paths:
+    - /api81/
+    - /api82/
+    - /api83/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - paths:
+    - /api91/
+    - /api92/
+    - /api93/
+    service: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+    routeAction:
+      urlRewrite:
+        hostRewrite: vert09.example.com

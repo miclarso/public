@@ -1,0 +1,1414 @@
+defaultRouteAction:
+  urlRewrite:
+    hostRewrite: org1.example.com
+defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+hostRules:
+- hosts:
+  - otaprd.example.com
+  pathMatcher: path-matcher-1
+- hosts:
+  - policies.telematics.example.com
+  pathMatcher: path-matcher-2
+- hosts:
+  - services.cx.example.com
+  pathMatcher: path-matcher-3
+- hosts:
+  - api.mps.example.com
+  pathMatcher: path-matcher-4
+- hosts:
+  - vehicle.api.example.com
+  pathMatcher: path-matcher-5
+kind: compute#urlMap
+name: url-map-l7-gxlb-1
+pathMatchers:
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-1
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-2
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-3
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-4
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /api81
+      - prefixMatch: /api82
+      - prefixMatch: /api83
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /api91
+      - prefixMatch: /api92
+      - prefixMatch: /api93
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com
+- defaultService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-org1
+  name: path-matcher-5
+  defaultRouteAction:
+    urlRewrite:
+      hostRewrite: org1.example.com
+  routeRules:
+  - matchRules:
+      - prefixMatch: /api11
+      - prefixMatch: /api12
+      - prefixMatch: /api13
+    priority: 101
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-1
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert01.example.com
+  - matchRules:
+      - prefixMatch: /api21
+      - prefixMatch: /api22
+      - prefixMatch: /api23
+    priority: 102
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-2
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert02.example.com
+  - matchRules:
+      - prefixMatch: /api31
+      - prefixMatch: /api32
+      - prefixMatch: /api33
+    priority: 103
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-3
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert03.example.com
+  - matchRules:
+      - prefixMatch: /api41
+      - prefixMatch: /api42
+      - prefixMatch: /api43
+    priority: 104
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-4
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert04.example.com
+  - matchRules:
+      - prefixMatch: /api51
+      - prefixMatch: /api52
+      - prefixMatch: /api53
+    priority: 105
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-5
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert05.example.com
+  - matchRules:
+      - prefixMatch: /api61
+      - prefixMatch: /api62
+      - prefixMatch: /api63
+    priority: 106
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-6
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert06.example.com
+  - matchRules:
+      - prefixMatch: /api71
+      - prefixMatch: /api72
+      - prefixMatch: /api73
+    priority: 107
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-7
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert07.example.com
+  - matchRules:
+      - prefixMatch: /fpi/clauto/symbols
+      - prefixMatch: /fpi/clauto/vehicleinfo
+      - prefixMatch: /fsabom
+      - prefixMatch: /fulfillment-service
+    priority: 108
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-8
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert08.example.com
+  - matchRules:
+      - prefixMatch: /aab
+      - prefixMatch: /aalgateway
+      - prefixMatch: /accessories-eligibility
+      - prefixMatch: /accessories-service
+      - prefixMatch: /account-api
+      - prefixMatch: /AccountManagement
+      - prefixMatch: /acnt-processing
+      - prefixMatch: /activecall
+      - prefixMatch: /acum
+      - prefixMatch: /adminTools
+      - prefixMatch: /agenda-sales/api
+      - prefixMatch: /agenda/alertadn
+      - prefixMatch: /agenda/backoffice
+      - prefixMatch: /agenda/digitalinventory/api
+      - prefixMatch: /agenda/gateway
+      - prefixMatch: /agenda/notifications
+      - prefixMatch: /agenda/owners
+      - prefixMatch: /agenda/users
+      - prefixMatch: /agendadealer/api/dvt
+      - prefixMatch: /agendadealermedia
+      - prefixMatch: /agendascheduling/api
+      - prefixMatch: /aim-admin
+      - prefixMatch: /aim-ic
+      - prefixMatch: /AIMServicesWeb
+      - prefixMatch: /amna/customer-identity
+      - prefixMatch: /amna/extensions
+      - prefixMatch: /amna/payments
+      - prefixMatch: /amna/qualifications
+      - prefixMatch: /amna/registration
+      - prefixMatch: /announcement
+      - prefixMatch: /api_arfd
+      - prefixMatch: /api_vector
+      - prefixMatch: /api/account-manager
+      - prefixMatch: /api/address-lookup
+      - prefixMatch: /api/admin/ext/version1
+      - prefixMatch: /api/admin/version1
+      - prefixMatch: /api/aggregator
+      - prefixMatch: /api/alexaRemoteLogin
+      - prefixMatch: /api/amplitude
+      - prefixMatch: /api/amplitude-v2
+      - prefixMatch: /api/amplitude/experiments
+      - prefixMatch: /api/answer
+      - prefixMatch: /api/apca
+      - prefixMatch: /api/apca/getccsentitysettings
+      - prefixMatch: /api/APIImage
+      - prefixMatch: /api/app-info
+      - prefixMatch: /api/app2app/dts
+      - prefixMatch: /api/appmetadata
+      - prefixMatch: /api/apptoapp/vha
+      - prefixMatch: /api/asn
+      - prefixMatch: /api/asyncnotification
+      - prefixMatch: /api/authorization
+      - prefixMatch: /api/autocomplete
+      - prefixMatch: /api/AutoLocateDealer
+      - prefixMatch: /api/binarydownload
+      - prefixMatch: /api/brexdataservice/diagnostic
+      - prefixMatch: /api/bsl-vehicle-filter
+      - prefixMatch: /api/buy
+      - prefixMatch: /api/c360-address-standardize
+      - prefixMatch: /api/c360-addresslookup
+      - prefixMatch: /api/c360-consumer-finder
+      - prefixMatch: /api/c360-consumer-loyalty
+      - prefixMatch: /api/c360-consumer-loyalty-calc
+      - prefixMatch: /api/c360-consumer-vehicles
+      - prefixMatch: /api/c360-consumerid-retrieval
+      - prefixMatch: /api/c360-consumers
+      - prefixMatch: /api/c360-consumertyperetrieval
+      - prefixMatch: /api/c360-customermastering
+      - prefixMatch: /api/c360-dealerization
+      - prefixMatch: /api/c360-email-validator
+      - prefixMatch: /api/c360-idretrievalbytype
+      - prefixMatch: /api/c360-marketing-profiles
+      - prefixMatch: /api/c360-online-profiles
+      - prefixMatch: /api/c360-owner-transfer
+      - prefixMatch: /api/c360-phone-validator
+      - prefixMatch: /api/c360-serv-hist
+      - prefixMatch: /api/c360-service-history
+      - prefixMatch: /api/c360-vehicledisposal
+      - prefixMatch: /api/c360cp-adminstration
+      - prefixMatch: /api/c360cp-batch
+      - prefixMatch: /api/c360cp-cache-administration
+      - prefixMatch: /api/c360cp-consent
+      - prefixMatch: /api/c360cp-deleteprivacy
+      - prefixMatch: /api/c360cp-idcorrection
+      - prefixMatch: /api/c360cp-mergepurge
+      - prefixMatch: /api/c360cp-privacy
+      - prefixMatch: /api/c360cp-privacy2
+      - prefixMatch: /api/c360cp-privacyhistory
+      - prefixMatch: /api/c360cp-profiledevice
+      - prefixMatch: /api/c360cp-resetconsent
+      - prefixMatch: /api/c360cp-sourcecode
+      - prefixMatch: /api/c360cp-sourcegroupadmin
+      - prefixMatch: /api/cachescheduler
+      - prefixMatch: /api/calculator
+      - prefixMatch: /api/cap-account
+      - prefixMatch: /api/cap-addressbook
+      - prefixMatch: /api/cap-admin
+      - prefixMatch: /api/cap-guestaccount
+      - prefixMatch: /api/cap-marketingprofile
+      - prefixMatch: /api/cap-mmpcache
+      - prefixMatch: /api/cap-search
+      - prefixMatch: /api/cap-sourcecode
+      - prefixMatch: /api/cap-validation
+      - prefixMatch: /api/cap-vehicle
+      - prefixMatch: /api/cap-vin
+      - prefixMatch: /api/capability/cvfma
+      - prefixMatch: /api/capabilitydateservice
+      - prefixMatch: /api/carpassdsrapi
+      - prefixMatch: /api/ccdp-dealerization
+      - prefixMatch: /api/ccdp-vehicles
+      - prefixMatch: /api/ccpa-automation
+      - prefixMatch: /api/ccreset
+      - prefixMatch: /api/cedte
+      - prefixMatch: /api/Certificates
+      - prefixMatch: /api/channelavailability
+      - prefixMatch: /api/chronos
+      - prefixMatch: /api/clearCache
+      - prefixMatch: /api/collisioncenter
+      - prefixMatch: /api/command-processor
+      - prefixMatch: /api/communication
+      - prefixMatch: /api/consent
+      - prefixMatch: /api/consentb2c
+      - prefixMatch: /api/consentbyvin
+      - prefixMatch: /api/consumerprivacy
+      - prefixMatch: /api/contactcenter
+      - prefixMatch: /api/contactcenter/calllog
+      - prefixMatch: /api/contractaccessories
+      - prefixMatch: /api/conversations
+      - prefixMatch: /api/cp-adminstration
+      - prefixMatch: /api/cp-batch
+      - prefixMatch: /api/cp-consent
+      - prefixMatch: /api/cp-idcorrection
+      - prefixMatch: /api/cp-mergepurge
+      - prefixMatch: /api/cp-privacy
+      - prefixMatch: /api/cp-privacyhistory
+      - prefixMatch: /api/cp-profiledevice
+      - prefixMatch: /api/cp-request-adminstration
+      - prefixMatch: /api/cp-resetconsent
+      - prefixMatch: /api/cp-sourcecode
+      - prefixMatch: /api/cp-vehicleprivacy
+      - prefixMatch: /api/cpu/cdr
+      - prefixMatch: /api/customer
+      - prefixMatch: /api/customer-account
+      - prefixMatch: /api/customizer
+      - prefixMatch: /api/cvbop/features
+      - prefixMatch: /api/cvbop/troubleshooting
+      - prefixMatch: /api/cvbop/user/authorization
+      - prefixMatch: /api/cvfe/callback
+      - prefixMatch: /api/cvfe/enrollment
+      - prefixMatch: /api/cvfe/validation
+      - prefixMatch: /api/cvfma
+      - prefixMatch: /api/cvfma/vehicleprofile
+      - prefixMatch: /api/cvpp/associations
+      - prefixMatch: /api/cvpp/auth-manager
+      - prefixMatch: /api/cvpp/capability
+      - prefixMatch: /api/cvpp/cloud-access-manager
+      - prefixMatch: /api/cvpp/config-manager
+      - prefixMatch: /api/cvpp/enrollment-profile
+      - prefixMatch: /api/cvpp/enrollment-settings
+      - prefixMatch: /api/cvpp/es
+      - prefixMatch: /api/cvpp/evac
+      - prefixMatch: /api/cvpp/evac-manager
+      - prefixMatch: /api/cvpp/free-for-life
+      - prefixMatch: /api/cvpp/fulfillment-cart
+      - prefixMatch: /api/cvpp/fulfillment-state-service
+      - prefixMatch: /api/cvpp/fulfillments
+      - prefixMatch: /api/cvpp/groupadmin
+      - prefixMatch: /api/cvpp/transaction-management-service
+      - prefixMatch: /api/cvpp/vehicleauth
+      - prefixMatch: /api/dah2v
+      - prefixMatch: /api/dataexplorer
+      - prefixMatch: /api/dataservice
+      - prefixMatch: /api/dcad
+      - prefixMatch: /api/dealer-management
+      - prefixMatch: /api/dealersearch
+      - prefixMatch: /api/dealerSecurity
+      - prefixMatch: /api/dealership
+      - prefixMatch: /api/deviceConfig
+      - prefixMatch: /api/diagnostic
+      - prefixMatch: /api/digitalaudio
+      - prefixMatch: /api/dms/img
+      - prefixMatch: /api/dms/sa
+      - prefixMatch: /api/dts
+      - prefixMatch: /api/dvd-functions
+      - prefixMatch: /api/dvd-functions/carmon
+      - prefixMatch: /api/dvd-functions/parsed
+      - prefixMatch: /api/dvd-functions/rdr
+      - prefixMatch: /api/earlyaccess
+      - prefixMatch: /api/ecall
+      - prefixMatch: /api/edc1dummyreceiver1ext
+      - prefixMatch: /api/edc1dummyreceiver2ext
+      - prefixMatch: /api/electrification/chargerdata/ocpi/emsp/2.1.1
+      - prefixMatch: /api/electrification/energy-schedule
+      - prefixMatch: /api/electrification/experiences
+      - prefixMatch: /api/electrification/fccs/commands
+      - prefixMatch: /api/electrification/fccs/data-ingestion
+      - prefixMatch: /api/electrification/fccs/firmware-mgmt
+      - prefixMatch: /api/electrification/fccs/stats
+      - prefixMatch: /api/electrification/platform
+      - prefixMatch: /api/email
+      - prefixMatch: /api/enumerate
+      - prefixMatch: /api/euicc
+      - prefixMatch: /api/euicc/core
+      - prefixMatch: /api/euoutbound
+      - prefixMatch: /api/eUsed
+      - prefixMatch: /api/evcps-global
+      - prefixMatch: /api/event
+      - prefixMatch: /api/evss-global
+      - prefixMatch: /api/evss-global-cdr
+      - prefixMatch: /api/evss-global-customer-update
+      - prefixMatch: /api/expauthorizedusers
+      - prefixMatch: /api/expconsent
+      - prefixMatch: /api/expdashboard
+      - prefixMatch: /api/expvehiclealerts
+      - prefixMatch: /api/expvehiclecapabilities
+      - prefixMatch: /api/expvehicledetails
+      - prefixMatch: /api/expvehiclehowtovideos
+      - prefixMatch: /api/expvehicleservice
+      - prefixMatch: /api/expvsureleasenotes
+      - prefixMatch: /api/ext/version1
+      - prefixMatch: /api/external/getapigeehealth
+      - prefixMatch: /api/fcsmessageprocessor
+      - prefixMatch: /api/feature-update
+      - prefixMatch: /api/fenix-fire/data-aggregator
+      - prefixMatch: /api/fenix-fire/direct-configuration-service
+      - prefixMatch: /api/fenix-fire/file-data-accessor
+      - prefixMatch: /api/fenix-fire/logging
+      - prefixMatch: /api/fenix-fire/mass-rollout-service
+      - prefixMatch: /api/fenix-fire/orfin-communicator
+      - prefixMatch: /api/fenix-fire/rollout-data-accessor
+      - prefixMatch: /api/fenix-fire/rollout-generator
+      - prefixMatch: /api/fenix-fire/status-data-accessor
+      - prefixMatch: /api/fenix-fire/tmc-communicator
+      - prefixMatch: /api/fenix-fire/usb-assembler
+      - prefixMatch: /api/fenix-fire/vadr-communicator
+      - prefixMatch: /api/fenix-fire/vin-management-data-accessor
+      - prefixMatch: /api/FimcoBackendApi
+      - prefixMatch: /api/force/applicationstorage
+      - prefixMatch: /api/force/configurableitems
+      - prefixMatch: /api/force/configurableitemsdelta
+      - prefixMatch: /api/force/configurations
+      - prefixMatch: /api/force/partiispec
+      - prefixMatch: /api/ford-drive-backend
+      - prefixMatch: /api/ford-id
+      - prefixMatch: /api/fordau
+      - prefixMatch: /api/fordconnect
+      - prefixMatch: /api/fordconnect-private
+      - prefixMatch: /api/fordconnect-simulated
+      - prefixMatch: /api/fordpass-web-redirect
+      - prefixMatch: /api/fordph
+      - prefixMatch: /api/fordsa
+      - prefixMatch: /api/fordservice
+      - prefixMatch: /api/fordthai
+      - prefixMatch: /api/fps
+      - prefixMatch: /api/fulfillment-orchestration
+      - prefixMatch: /api/fva
+      - prefixMatch: /api/fva/auth
+      - prefixMatch: /api/fva/commands
+      - prefixMatch: /api/fva/pcs
+      - prefixMatch: /api/fva/recon
+      - prefixMatch: /api/fva/vtg
+      - prefixMatch: /api/garage
+      - prefixMatch: /api/gcl
+      - prefixMatch: /api/gcl/secondary
+      - prefixMatch: /api/gcp/gcl
+      - prefixMatch: /api/gcpdummyreceiver3ext
+      - prefixMatch: /api/gcpdummyreceiver4ext
+      - prefixMatch: /api/gda
+      - prefixMatch: /api/GeographicLocation
+      - prefixMatch: /api/getsoftwareupdates
+      - prefixMatch: /api/globalcommunicationgateway
+      - prefixMatch: /api/Gpas
+      - prefixMatch: /api/gsug
+      - prefixMatch: /api/guestxp
+      - prefixMatch: /api/guestxpgateway
+      - prefixMatch: /api/gxp-orchestration
+      - prefixMatch: /api/gxp-orchestration-appointments
+      - prefixMatch: /api/gxp-orchestration-trippublisher-service
+      - prefixMatch: /api/hmc
+      - prefixMatch: /api/hmpc
+      - prefixMatch: /api/hmpc/pseudo
+      - prefixMatch: /api/ici-customerprofile
+      - prefixMatch: /api/icivgs
+      - prefixMatch: /api/id-hub
+      - prefixMatch: /api/ida-ag
+      - prefixMatch: /api/identity
+      - prefixMatch: /api/identity-orchestrator
+      - prefixMatch: /api/identity-provider-wrapper
+      - prefixMatch: /api/identity-pubsub-consumer
+      - prefixMatch: /api/imageservice
+      - prefixMatch: /api/incentives
+      - prefixMatch: /api/internal/wifi
+      - prefixMatch: /api/invoice-consumer
+      - prefixMatch: /api/iotactr
+      - prefixMatch: /api/iotasync
+      - prefixMatch: /api/iotaziphandler
+      - prefixMatch: /api/ippt/tokenmanagement
+      - prefixMatch: /api/lcp
+      - prefixMatch: /api/marketingTransaction
+      - prefixMatch: /api/meb
+      - prefixMatch: /api/member-assist
+      - prefixMatch: /api/messagecenter
+      - prefixMatch: /api/messageprocessor
+      - prefixMatch: /api/mmota
+      - prefixMatch: /api/mobileeye
+      - prefixMatch: /api/moduleinfo
+      - prefixMatch: /api/moduleinfo/gcp
+      - prefixMatch: /api/moduleinfo/pilot
+      - prefixMatch: /api/modulekeys
+      - prefixMatch: /api/moduleupdate
+      - prefixMatch: /api/na/calculator
+      - prefixMatch: /api/na/engine
+      - prefixMatch: /api/na/sys
+      - prefixMatch: /api/notification
+      - prefixMatch: /api/notificationprocessor
+      - prefixMatch: /api/ocpp
+      - prefixMatch: /api/ocpp-dashboard
+      - prefixMatch: /api/ocpp-downstream
+      - prefixMatch: /api/offer-manager
+      - prefixMatch: /api/offer-manager-b2b
+      - prefixMatch: /api/offroadtrails
+      - prefixMatch: /api/orchestration-manager
+      - prefixMatch: /api/order-manager-auto
+      - prefixMatch: /api/order-manager-b2b
+      - prefixMatch: /api/orfinpro/fum
+      - prefixMatch: /api/orfinpro/pda
+      - prefixMatch: /api/orfinpro/pdm
+      - prefixMatch: /api/orfinpro/pm
+      - prefixMatch: /api/orfinpro/rdm
+      - prefixMatch: /api/orfinpro/spm
+      - prefixMatch: /api/orfinpro/ucm
+      - prefixMatch: /api/orfinpro/vis
+      - prefixMatch: /api/ota/configurations
+      - prefixMatch: /api/ota/ecuconfiginfo
+      - prefixMatch: /api/ota/flare/valhalfenrir
+      - prefixMatch: /api/ota/tmc-listener
+      - prefixMatch: /api/ota/tmc-listener-diagnostic
+      - prefixMatch: /api/ota/transactions
+      - prefixMatch: /api/ota/vehicledc
+      - prefixMatch: /api/ota/vehiclestate
+      - prefixMatch: /api/otosan-proxy
+      - prefixMatch: /api/own
+      - prefixMatch: /api/ownership-transfer
+      - prefixMatch: /api/ownersmanual
+      - prefixMatch: /api/paak
+      - prefixMatch: /api/paak/auxiliary
+      - prefixMatch: /api/packagemanager
+      - prefixMatch: /api/PartnerOutboundService
+      - prefixMatch: /api/payment-services
+      - prefixMatch: /api/pdfgenerator
+      - prefixMatch: /api/peripheraldatarequest
+      - prefixMatch: /api/phdts
+      - prefixMatch: /api/places
+      - prefixMatch: /api/poi
+      - prefixMatch: /api/policies
+      - prefixMatch: /api/polk
+      - prefixMatch: /api/prequalify/rest
+      - prefixMatch: /api/privacy
+      - prefixMatch: /api/private-offers
+      - prefixMatch: /api/prognostics
+      - prefixMatch: /api/prognostics2x
+      - prefixMatch: /api/Prospect
+      - prefixMatch: /api/push
+      - prefixMatch: /api/rcc/profile
+      - prefixMatch: /api/recall
+      - prefixMatch: /api/report-manager-b2c
+      - prefixMatch: /api/request-distributor
+      - prefixMatch: /api/reset/retail
+      - prefixMatch: /api/reward-catalog
+      - prefixMatch: /api/rewards
+      - prefixMatch: /api/rewards-account-info
+      - prefixMatch: /api/rewards-account-publisher
+      - prefixMatch: /api/rewards-redemption
+      - prefixMatch: /api/rewards/customer-activity
+      - prefixMatch: /api/rewards/enrollment
+      - prefixMatch: /api/rewards/platform/azure
+      - prefixMatch: /api/roadsideassistance
+      - prefixMatch: /api/roadsideassistancena
+      - prefixMatch: /api/roadsideassistancenawebhook
+      - prefixMatch: /api/SAP
+      - prefixMatch: /api/sca-cap
+      - prefixMatch: /api/search
+      - prefixMatch: /api/secure
+      - prefixMatch: /api/secure-ecomm
+      - prefixMatch: /api/secure-ecomm/auth
+      - prefixMatch: /api/secure-purchase
+      - prefixMatch: /api/secure-purchase/auth
+      - prefixMatch: /api/servicehistory
+      - prefixMatch: /api/servicemessagecenter
+      - prefixMatch: /api/servicexml
+      - prefixMatch: /api/shop
+      - prefixMatch: /api/ShortURLService
+      - prefixMatch: /api/sms
+      - prefixMatch: /api/snapobserver
+      - prefixMatch: /api/srsm
+      - prefixMatch: /api/srsm/vehicles
+      - prefixMatch: /api/subscription-orchestration
+      - prefixMatch: /api/subscription-rewards
+      - prefixMatch: /api/subscription-services
+      - prefixMatch: /api/sumsgo/ClaimOrchestrator
+      - prefixMatch: /api/svs/enrollment
+      - prefixMatch: /api/svs/user
+      - prefixMatch: /api/svs/vehicles
+      - prefixMatch: /api/svs/vehicles/na
+      - prefixMatch: /api/Sync
+      - prefixMatch: /api/templateinjector
+      - prefixMatch: /api/test-drive
+      - prefixMatch: /api/text-paging-ext
+      - prefixMatch: /api/token
+      - prefixMatch: /api/token-validation
+      - prefixMatch: /api/tp/feedback
+      - prefixMatch: /api/tp/manager
+      - prefixMatch: /api/tp/ops
+      - prefixMatch: /api/tp/routing
+      - prefixMatch: /api/tp/vehsig
+      - prefixMatch: /api/tronfi
+      - prefixMatch: /api/ubi
+      - prefixMatch: /api/ubi-mock
+      - prefixMatch: /api/usage-management
+      - prefixMatch: /api/user/garage
+      - prefixMatch: /api/userobfuscation
+      - prefixMatch: /api/userpreferences
+      - prefixMatch: /api/users
+      - prefixMatch: /api/users/devices
+      - prefixMatch: /api/userValidation
+      - prefixMatch: /api/v1/GetVinSyncStatus
+      - prefixMatch: /api/v1/isreplay
+      - prefixMatch: /api/v1/RetrieveCCSSettingsChangeStatus
+      - prefixMatch: /api/v1/SendCCSSettings
+      - prefixMatch: /api/v1/updatemodule
+      - prefixMatch: /api/vadrGateway
+      - prefixMatch: /api/vcps
+      - prefixMatch: /api/vehicle-capability
+      - prefixMatch: /api/vehicle-model
+      - prefixMatch: /api/vehicle-token
+      - prefixMatch: /api/vehicledatalookup
+      - prefixMatch: /api/vehiclediscovery
+      - prefixMatch: /api/vehicleimage
+      - prefixMatch: /api/vehiclemaintenance
+      - prefixMatch: /api/VehicleModuleApplinkApplicationCertificate
+      - prefixMatch: /api/VehicleModuleInfoService
+      - prefixMatch: /api/vehicleprofile
+      - prefixMatch: /api/vehicleprofileservice
+      - prefixMatch: /api/vehicleservicebooking
+      - prefixMatch: /api/vehicleuser
+      - prefixMatch: /api/vehicleuserPrognostics
+      - prefixMatch: /api/vehinfo
+      - prefixMatch: /api/vendor
+      - prefixMatch: /api/version1
+      - prefixMatch: /api/vha
+      - prefixMatch: /api/vha/diagnostics/history
+      - prefixMatch: /api/vha/prognostics/history
+      - prefixMatch: /api/vhr/scheduleservice
+      - prefixMatch: /api/vhr/v1
+      - prefixMatch: /api/vht
+      - prefixMatch: /api/vildata
+      - prefixMatch: /api/vinauthorization
+      - prefixMatch: /api/vinauthorizationutility
+      - prefixMatch: /api/vinmfaldiscovery
+      - prefixMatch: /api/vistaotd
+      - prefixMatch: /api/vpoi/utilityProviders
+      - prefixMatch: /api/vsem/fededeviation
+      - prefixMatch: /api/vsemportal
+      - prefixMatch: /api/vstat-gw
+      - prefixMatch: /api/vstatmessageprocessor
+      - prefixMatch: /api/wallbox
+      - prefixMatch: /api/wallbox-profile-service
+      - prefixMatch: /api/warrantycoverage
+      - prefixMatch: /api/wifi
+      - prefixMatch: /apigee/api/fuse
+      - prefixMatch: /applink
+      - prefixMatch: /apsauthorization
+      - prefixMatch: /APSServices
+      - prefixMatch: /ar3fis/chatbot/api
+      - prefixMatch: /ar3fis/chatbot/mail
+      - prefixMatch: /ar3fis/chatbot/session
+      - prefixMatch: /arpw
+      - prefixMatch: /arreceivablelinebapi
+      - prefixMatch: /AssignAccess
+      - prefixMatch: /atford
+      - prefixMatch: /ATSSurveyRank
+      - prefixMatch: /attributes
+      - prefixMatch: /AU_SMS
+      - prefixMatch: /AuthZServices
+      - prefixMatch: /AutoSigner
+      - prefixMatch: /avcc/interaction
+      - prefixMatch: /avcc/leadimportrequest
+      - prefixMatch: /baylocator
+      - prefixMatch: /bees/application
+      - prefixMatch: /bees/customer
+      - prefixMatch: /bees/document
+      - prefixMatch: /bees/identity
+      - prefixMatch: /bees/quote
+      - prefixMatch: /bees/shop
+      - prefixMatch: /bev-insights-api
+      - prefixMatch: /bin
+      - prefixMatch: /bin/api
+      - prefixMatch: /bluezone-map-distribution
+      - prefixMatch: /bobitleads
+      - prefixMatch: /bocn-charge-locations
+      - prefixMatch: /booking-refresh.ford.com
+      - prefixMatch: /bsdsapi
+      - prefixMatch: /bspa_tradein_api_gcp
+      - prefixMatch: /bulk/electrification
+      - prefixMatch: /bulkordercreation
+      - prefixMatch: /caasreceiver
+      - prefixMatch: /calendar
+      - prefixMatch: /call-center-services
+      - prefixMatch: /calmservicePROD
+      - prefixMatch: /capability
+      - prefixMatch: /catalog
+      - prefixMatch: /ccaps_check_enquiry_api
+      - prefixMatch: /ccaps_invoice_enquiry_api
+      - prefixMatch: /ccaps_remits
+      - prefixMatch: /ccapspoenq1bapi
+      - prefixMatch: /ccapspoenq2b
+      - prefixMatch: /ccp
+      - prefixMatch: /CCPULogAnalyzerFile/LogAnalyzerFile
+      - prefixMatch: /ccs
+      - prefixMatch: /ccsreport/uploadfile
+      - prefixMatch: /ccss/contents/fce
+      - prefixMatch: /ccss/contents/fcna
+      - prefixMatch: /cdr
+      - prefixMatch: /change
+      - prefixMatch: /changepassword
+      - prefixMatch: /charge-locations
+      - prefixMatch: /checksheet/beapi
+      - prefixMatch: /checksheet/fsaapi
+      - prefixMatch: /checksheet/mlapi
+      - prefixMatch: /checksheet/reportapi
+      - prefixMatch: /cim-upfitter-api
+      - prefixMatch: /cityvan
+      - prefixMatch: /ciw/api
+      - prefixMatch: /claims
+      - prefixMatch: /click-score-data
+      - prefixMatch: /CloudRunEnhancedReceiverPD
+      - prefixMatch: /cmmsotg
+      - prefixMatch: /cmsmo
+      - prefixMatch: /coca
+      - prefixMatch: /coca-services
+      - prefixMatch: /cocdataproviderservice
+      - prefixMatch: /cocservices
+      - prefixMatch: /cocwebservices
+      - prefixMatch: /commercial-logging-service
+      - prefixMatch: /commercialgrowservice
+      - prefixMatch: /commercialownservice
+      - prefixMatch: /commscals
+      - prefixMatch: /competitive-compare
+      - prefixMatch: /config
+      - prefixMatch: /connectorfailure
+      - prefixMatch: /Consumer/VehicleModuleInfo
+      - prefixMatch: /consumerContact
+      - prefixMatch: /contactus
+      - prefixMatch: /contracts
+      - prefixMatch: /conversion-rate
+      - prefixMatch: /core
+      - prefixMatch: /core-exp
+      - prefixMatch: /corporateGroupData
+      - prefixMatch: /costapp
+      - prefixMatch: /cpoapi
+      - prefixMatch: /CRAzureADEnhancedReceiverExt
+      - prefixMatch: /crmApi
+      - prefixMatch: /cspl
+      - prefixMatch: /cupid-lead
+      - prefixMatch: /customer
+      - prefixMatch: /customer-service-content/fce
+      - prefixMatch: /customer-service-content/fcna
+      - prefixMatch: /customerorder
+      - prefixMatch: /customerprefillapi
+      - prefixMatch: /cvdafunctions
+      - prefixMatch: /cvwebapi/api/connectedvehicle/checkdealeraccess
+      - prefixMatch: /cvwebapi/api/connectedvehicle/ConnectedVehicleData
+      - prefixMatch: /cvwebapi/api/connectedvehicle/connectedvehiclelog
+      - prefixMatch: /cvwebAPI/api/ConnectedVehicle/CVDSCapablities
+      - prefixMatch: /cvwebapi/api/connectedvehicle/cvmetadataflag
+      - prefixMatch: /cvwebapi/api/connectedvehicle/cvprivacy
+      - prefixMatch: /cvwebapi/api/connectedvehicle/cvsupportedcountry
+      - prefixMatch: /cvwebapi/api/connectedvehicle/downloadreleasenoteurldata
+      - prefixMatch: /cvwebapi/api/connectedvehicle/otavehicleimage
+      - prefixMatch: /cvwebapi/api/connectedvehicle/translatetextmessage
+      - prefixMatch: /cvwebapi/api/CVSupport/GetArticlesBySymptom
+      - prefixMatch: /cvwebapi/api/CVSupport/getDPESData
+      - prefixMatch: /cvwebapi/api/CVSupport/getTMCVSTATData
+      - prefixMatch: /cvwebapi/api/cvvhafuse/diagnostic
+      - prefixMatch: /cvwebapi/api/cvvhafuse/diagnostichistory
+      - prefixMatch: /cvwebAPI/api/CVVHAFUSE/DTCDataDetailDescription
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/DTSGetDTCTitle
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/DTSMapDetails
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/FailureTypeDetails
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/LatestStatusData
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/LatestStatusLastSixtyData
+      - prefixMatch: /cvwebapi/api/cvvhafuse/mmlmoduleacronym
+      - prefixMatch: /cvwebapi/api/cvvhafuse/prognostic
+      - prefixMatch: /cvwebapi/api/cvvhafuse/prognostichistory
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/StatusByteDetails
+      - prefixMatch: /cvwebapi/api/CVVHAFUSE/VerboseData
+      - prefixMatch: /cybersecurityhub
+      - prefixMatch: /cyclone-translator
+      - prefixMatch: /da-dealerpartnership
+      - prefixMatch: /da-dealerwholesale
+      - prefixMatch: /daa-dealerpartnership
+      - prefixMatch: /daa-dealerwholesale
+      - prefixMatch: /dashboard-bff-prod
+      - prefixMatch: /data-explorer
+      - prefixMatch: /dbi-kb
+      - prefixMatch: /dcds-cdk-translator
+      - prefixMatch: /dcds-dms
+      - prefixMatch: /dcds-gxp
+      - prefixMatch: /dcds-repairorder
+      - prefixMatch: /dcds-saga
+      - prefixMatch: /dcds-saga/api/5
+      - prefixMatch: /dcds/appointment
+      - prefixMatch: /dcds/dms
+      - prefixMatch: /dcdshub
+      - prefixMatch: /dcg
+      - prefixMatch: /dcm
+      - prefixMatch: /ddapi
+      - prefixMatch: /dealer
+      - prefixMatch: /dealer-actions-service
+      - prefixMatch: /dealer-inventory
+      - prefixMatch: /DealerAssignments
+      - prefixMatch: /dealerdetails
+      - prefixMatch: /DealerDocument
+      - prefixMatch: /dealerhome
+      - prefixMatch: /dealerhub/dealerchatbot
+      - prefixMatch: /dealerhub/middleware
+      - prefixMatch: /dealerprogram
+      - prefixMatch: /dealerservice
+      - prefixMatch: /dealersummary
+      - prefixMatch: /dealervehicle
+      - prefixMatch: /delivery-range-report
+      - prefixMatch: /diag-search
+      - prefixMatch: /digitalservices
+      - prefixMatch: /disne/search
+      - prefixMatch: /DLM-ETDC-DataFeed
+      - prefixMatch: /dlr-delivery-ranges
+      - prefixMatch: /dlr-elig
+      - prefixMatch: /dlr-elig-row
+      - prefixMatch: /DLS
+      - prefixMatch: /DLS-Entitlements
+      - prefixMatch: /dmapiresource
+      - prefixMatch: /docs
+      - prefixMatch: /document
+      - prefixMatch: /document-info
+      - prefixMatch: /dp
+      - prefixMatch: /dp/api
+      - prefixMatch: /dpes
+      - prefixMatch: /dpes-downstream
+      - prefixMatch: /dqm-insights-api
+      - prefixMatch: /drive/api/dealersetup
+      - prefixMatch: /drive/api/regdivtm
+      - prefixMatch: /drive/api/summarygrid
+      - prefixMatch: /drive/api/vehicle
+      - prefixMatch: /driverscore
+      - prefixMatch: /dsfmCorpPing
+      - prefixMatch: /dsfmDownload
+      - prefixMatch: /dsfmStatusCheck
+      - prefixMatch: /dsfmTechTip
+      - prefixMatch: /dsfmUpload
+      - prefixMatch: /dsrapi
+      - prefixMatch: /dtaapi
+      - prefixMatch: /dtg
+      - prefixMatch: /dvd-commands
+      - prefixMatch: /dvd-commands/undeploy
+      - prefixMatch: /dvd-deployments/monitoring
+      - prefixMatch: /dynamic-pricing-prod
+      - prefixMatch: /ecom-finance
+      - prefixMatch: /ecom-finance-message
+      - prefixMatch: /ecomm-buyvehicleconfig
+      - prefixMatch: /ecomm-buyvehicleconfigEU
+      - prefixMatch: /ecomm-catalog-feed
+      - prefixMatch: /ecomm-customeraddress
+      - prefixMatch: /ecomm-customerselectionstorage
+      - prefixMatch: /ecomm-dynamicmanage
+      - prefixMatch: /ecomm-linkprofile
+      - prefixMatch: /ecomm-linkprofileEU
+      - prefixMatch: /ecomm-ordersummary
+      - prefixMatch: /ecomm-updateaddress
+      - prefixMatch: /ecomm-updateprofile
+      - prefixMatch: /ecrml
+      - prefixMatch: /EDC1EnhancedReceiverPD
+      - prefixMatch: /edc1loadtesting
+      - prefixMatch: /edcmservice
+      - prefixMatch: /efris
+      - prefixMatch: /efrisTrigger
+      - prefixMatch: /emp-auth
+      - prefixMatch: /emp-docusign
+      - prefixMatch: /emp-shared
+      - prefixMatch: /endeca
+      - prefixMatch: /enrollment
+      - prefixMatch: /epi-payment
+      - prefixMatch: /epi-refund
+      - prefixMatch: /Eprofile/EPLeadService/api
+      - prefixMatch: /equity-eligibility
+      - prefixMatch: /erfserviceaps
+      - prefixMatch: /erfserviceui
+      - prefixMatch: /esbfulfillcontract
+      - prefixMatch: /esbvinvalidation
+      - prefixMatch: /EspsContractMaintenanceAPI-external
+      - prefixMatch: /ESPSContractMaintenanceLegacyUI
+      - prefixMatch: /ESPSContractRegistration
+      - prefixMatch: /ESPSContractRegistrationApi
+      - prefixMatch: /EspsContractsAPI
+      - prefixMatch: /EspsContractsUI
+      - prefixMatch: /ESPSDealerAdmin
+      - prefixMatch: /ESPSPdfGeneration
+      - prefixMatch: /ESPSProductPlan
+      - prefixMatch: /EspsRealTimeRegistrationAPIExternal
+      - prefixMatch: /ESPSVehicleUsage
+      - prefixMatch: /ESPSWorkQueue
+      - prefixMatch: /esraservice
+      - prefixMatch: /essd
+      - prefixMatch: /eswitch
+      - prefixMatch: /eswitch/dashboard
+      - prefixMatch: /eswitch/reports-function
+      - prefixMatch: /eswitch/vehicle
+      - prefixMatch: /eupri-dealer-api
+      - prefixMatch: /evac_dsprice_feed_0b
+      - prefixMatch: /evac_invoice_request
+      - prefixMatch: /evac_n62_upd_api
+      - prefixMatch: /event-processor
+      - prefixMatch: /event-receiver
+      - prefixMatch: /evlwebservices
+      - prefixMatch: /ewms
+      - prefixMatch: /exemptionlabel
+      - prefixMatch: /ext/api/secure-ecomm
+      - prefixMatch: /ext/api/secure-purchase
+      - prefixMatch: /factoryFeedResponse
+      - prefixMatch: /falcon-customer
+      - prefixMatch: /falcon-vendors
+      - prefixMatch: /fav-web
+      - prefixMatch: /fb
+      - prefixMatch: /fccfcWAR/rest
+      - prefixMatch: /fccrmsalesforce
+      - prefixMatch: /fcdms/depot
+      - prefixMatch: /fcdms/generate
+      - prefixMatch: /fcdmt
+      - prefixMatch: /fcealfa/document
+      - prefixMatch: /fcealfa/document-creation
+      - prefixMatch: /fcealfa/edms
+      - prefixMatch: /fcealfa/messages
+      - prefixMatch: /fcealfa/payments-outbound
+      - prefixMatch: /fcealfa/rds
+      - prefixMatch: /fcmobile
+      - prefixMatch: /fcnacha
+      - prefixMatch: /fcnaes
+      - prefixMatch: /FCPAMFA
+      - prefixMatch: /fcsd/cis
+      - prefixMatch: /fcsdimg-d-line-chatbot-ext
+      - prefixMatch: /fddeu
+      - prefixMatch: /fddeu/profile
+      - prefixMatch: /fdsapi
+      - prefixMatch: /fdspcl
+      - prefixMatch: /feewaiver
+      - prefixMatch: /ffm
+      - prefixMatch: /ffmintgexp
+      - prefixMatch: /file
+      - prefixMatch: /filestorage
+      - prefixMatch: /filestorageauth
+      - prefixMatch: /finance-status
+      - prefixMatch: /fis/work/fsi
+      - prefixMatch: /fldh-emp
+      - prefixMatch: /fldh-lease
+      - prefixMatch: /fldh-maximo
+      - prefixMatch: /fleet-start-inhibit-api
+      - prefixMatch: /fleetactivation
+      - prefixMatch: /fleetUBI
+      - prefixMatch: /flmmsmobgcpservice
+      - prefixMatch: /flowTracker
+      - prefixMatch: /fmcc/api
+      - prefixMatch: /fmcc/api/document
+      - prefixMatch: /fmcdealer-service-dealerpreferences
+      - prefixMatch: /fmcdealer-us-aemsolr-api
+      - prefixMatch: /fmcdealer-us-comm-api
+      - prefixMatch: /fmcdealer-us-dealerexporter-api
+      - prefixMatch: /fmcdealer-us-dealerprofile-api
+      - prefixMatch: /fmcdealer-us-edms-api
+      - prefixMatch: /fmcdealer-us-profile-api
+      - prefixMatch: /fmms
+      - prefixMatch: /fnos
+      - prefixMatch: /foc_business_plan
+      - prefixMatch: /foc_dup
+      - prefixMatch: /foc_dup_rest
+      - prefixMatch: /foc_linc_loyl
+      - prefixMatch: /foc_sales_ops
+      - prefixMatch: /folder
+      - prefixMatch: /folder/users
+      - prefixMatch: /ford_au/api/rest
+      - prefixMatch: /ford_nz/api/rest
+      - prefixMatch: /ford_ph/api/rest
+      - prefixMatch: /ford_th/api/rest
+      - prefixMatch: /ford_vn/api/rest
+      - prefixMatch: /ford_za/api/rest
+      - prefixMatch: /ford-accessories
+      - prefixMatch: /ford-advocacy
+      - prefixMatch: /ford-img-api-leads-v1
+      - prefixMatch: /ford-parts
+      - prefixMatch: /fordcredit/ccn/cat
+      - prefixMatch: /fordcredit/ccn/insurance
+      - prefixMatch: /fordcredit/ccn/pro
+      - prefixMatch: /fordcredit/retail-bff/ford/en-ca
+      - prefixMatch: /fordcredit/retail-bff/ford/en-us
+      - prefixMatch: /fordcredit/retail-bff/ford/fr-ca
+      - prefixMatch: /fordcredit/retail-bff/lincoln/en-ca
+      - prefixMatch: /fordcredit/retail-bff/lincoln/en-us
+      - prefixMatch: /fordcredit/retail-bff/lincoln/fr-ca
+      - prefixMatch: /fordcreditpayments
+      - prefixMatch: /fordcreditwallets
+      - prefixMatch: /fordgo
+      - prefixMatch: /fordjuntos
+      - prefixMatch: /fordjuntos/building
+      - prefixMatch: /fordjuntos/checkin
+      - prefixMatch: /fordlabs-website
+      - prefixMatch: /fordland-datahub
+      - prefixMatch: /fordllm
+      - prefixMatch: /fordpasspro
+      - prefixMatch: /fordPassRewards
+      - prefixMatch: /fordquotesapi
+      - prefixMatch: /fourkeys
+      - prefixMatch: /fp-admintools
+      - prefixMatch: /fp-app-proxy
+      - prefixMatch: /fp-invoice
+      - prefixMatch: /fp-oauth
+      - prefixMatch: /fp-ux
+      - prefixMatch: /fp-wallet
+      - prefixMatch: /fpay-fpc
+      - prefixMatch: /fpc-report
+      - prefixMatch: /FPGLB
+      - prefixMatch: /fpi-auth-api
+      - prefixMatch: /fpi-consent-api
+      - prefixMatch: /fpi-cve-common-command-api
+      - prefixMatch: /fpi-cve-common-command-status-db-api
+      - prefixMatch: /fpi-cve-configuration-api
+      - prefixMatch: /fpi-dashcam-api
+      - prefixMatch: /fpi-developer-portal-api
+      - prefixMatch: /fpi-ev-driver-reimbursement-api
+      - prefixMatch: /fpi-ev-preconditioning-api
+      - prefixMatch: /fpi-feature-flag-api
+      - prefixMatch: /fpi-fleet-management-api
+      - prefixMatch: /fpi-fleet-online-service-booking-api
+      - prefixMatch: /fpi-fleet-user-api
+      - prefixMatch: /fpi-fleet-user-notification-api
+      - prefixMatch: /fpi-ford-pass-blocker
+      - prefixMatch: /fpi-lock-unlock-api
+      - prefixMatch: /fpi-mobile-experience-api
+      - prefixMatch: /fpi-mobile-experience-api/public
+      - prefixMatch: /fpi-settings-api
+      - prefixMatch: /fpi-sms-callback-api
+      - prefixMatch: /fpi-surfsight-external
+      - prefixMatch: /fpi-telematics-tmc-history-api
+      - prefixMatch: /fpi-vehicle-association-api
+      - prefixMatch: /fpi-vehicle-checklist-api
+      - prefixMatch: /fpi-vehicle-health-api
+      - prefixMatch: /fpi-vehicle-metadata-api
+      - prefixMatch: /fpi-vehicle-security-alert-api
+      - prefixMatch: /fpi-vehicle-security-preferences-api
+      - prefixMatch: /fpi-vehicle-service-recall-processor
+      - prefixMatch: /fpi-vehicle-trip-api
+      - prefixMatch: /fpi-vin-status-registry-api
+      - prefixMatch: /fpi-web-experience-api
+      - prefixMatch: /fpi/clauto/address-standardization
+      - prefixMatch: /fpi/clauto/appraisals
+      - prefixMatch: /fpi/clauto/cdd
+      - prefixMatch: /fpi/clauto/checks
+      - prefixMatch: /fpi/clauto/customerdomain
+      - prefixMatch: /fpi/clauto/documents
+      - prefixMatch: /fpi/clauto/driver-reports
+      - prefixMatch: /fpi/clauto/gl
+    priority: 109
+    routeAction:
+      weightedBackendServices:
+        - backendService: https://www.googleapis.com/compute/v1/projects/${PROJECT_ID}/global/backendServices/backend-service-gl-9
+          weight: 100
+      urlRewrite:
+        hostRewrite: vert09.example.com

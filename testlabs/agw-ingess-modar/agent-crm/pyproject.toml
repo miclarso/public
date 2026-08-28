@@ -1,0 +1,20 @@
+[project]
+name = "agent-crm"
+version = "0.1.0"
+description = "An agent to fetch crm data from google cloud storage using mcp"
+requires-python = ">=3.10"
+dependencies = [
+    "google-cloud-aiplatform[adk,agent_engines]",
+    "google-auth>=2.0",
+    "requests",
+    "opentelemetry-api",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-httpx",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agent"]

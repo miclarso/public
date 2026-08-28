@@ -1,0 +1,20 @@
+[project]
+name = "agent-crm"
+version = "1.6.0"
+description = "An agent to fetch crm data from google cloud storage using native gcs sdk"
+requires-python = ">=3.10"
+dependencies = [
+    "google-cloud-aiplatform[adk,agent_engines]",
+    "google-cloud-storage>=2.0.0",
+    "opentelemetry-instrumentation-fastapi",
+    "opentelemetry-instrumentation-grpc",
+    "opentelemetry-instrumentation-httpx",
+    "opentelemetry-instrumentation-google-genai",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["agent"]
