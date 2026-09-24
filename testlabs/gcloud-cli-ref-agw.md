@@ -537,7 +537,7 @@ curl -X PATCH "https://networksecurity.googleapis.com/v1alpha1/projects/${PROJ_I
 EOF
 ```
 
-## authz policies
+## authz (iap v1)
 
 ```sh
 # set var
@@ -941,12 +941,176 @@ gcloud logging read \
   )'
 ```
 
+## authz (iap v2)
+
+```sh
+# set var (trust domain if project in org or "org-less")
+if [[ -n "${ORG_ID}" ]]; then
+  export TRUST_DOMAIN="agents.global.org-${ORG_ID}.system.id.goog"
+else
+  export TRUST_DOMAIN="agents.global.proj-${PROJ_NO}.system.id.goog"
+fi
+
+echo ${TRUST_DOMAIN}
+```
+
+### rules
+
+```sh
+# create uap policy rule
+cat > cfg/uap-rule-1.json << EOF
+[
+  {
+    "description": "allow ge assistant to any registered service",
+    "effect": "ALLOW",
+    "principals": [
+      "principal://${TRUST_DOMAIN}/resources/discoveryengine/projects/${PROJ_NO}/locations/global/engines/${APP_ID}/assistants/default_assistant/agents/default/core_assistant"
+    ],
+    "operation": {
+      "permissions": [
+        "iap.googleapis.com/resources.egressViaIAP"
+      ]
+    },
+    "conditions": {
+      "iap.googleapis.com": {
+        "expression": \
+        "destination.is_registered == true"
+      }
+    }
+  }
+]
+EOF
+```
+
+```sh
+# update uap policy rule
+cat > cfg/uap-rule-1-update.json << EOF
+[
+  {
+    "description": "allow ge assistant to registered mcp and perform mcp discovery and handshake",
+    "effect": "ALLOW",
+    "principals": [
+      "principal://${TRUST_DOMAIN}/resources/discoveryengine/projects/${PROJ_NO}/locations/global/engines/${APP_ID}/assistants/default_assistant/agents/default/core_assistant"
+    ],
+    "operation": {
+      "permissions": [
+        "iap.googleapis.com/resources.egressViaIAP"
+      ]
+    },
+    "conditions": {
+      "iap.googleapis.com": {
+        "expression": \
+        "destination.is_registered == true && destination.agent_registry.mcp_server.method != 'tools/call'"
+      }
+    }
+  },
+  {
+    "description": "allow ge assistant to registered mcp and call tool subtract",
+    "effect": "ALLOW",
+    "principals": [
+      "principal://${TRUST_DOMAIN}/resources/discoveryengine/projects/${PROJ_NO}/locations/global/engines/${APP_ID}/assistants/default_assistant/agents/default/core_assistant"
+    ],
+    "operation": {
+      "permissions": [
+        "iap.googleapis.com/resources.egressViaIAP"
+      ]
+    },
+    "conditions": {
+      "iap.googleapis.com": {
+        "expression": \
+        "destination.is_registered == true && \
+         destination.agent_registry.mcp_server.method == \
+         'tools/call' && \
+         destination.agent_registry.mcp_server.tool.name == 'subtract'"
+      }
+    }
+  }
+]
+EOF
+```
+
+```sh
+# create uap policy rule
+cat > cfg/uap-rule-2.json << EOF
+[
+  {
+    "description": "allow arun agents from 3 projects to registered endpoint for core gcp services",
+    "effect": "ALLOW",
+    "principals": [
+      "principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.platformContainer/aiplatform/projects/${PROJ_NO_GOV}",
+      "principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.platformContainer/aiplatform/projects/${PROJ_NO_AGENT_1}",
+      "principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.platformContainer/aiplatform/projects/${PROJ_NO_AGENT_2}"
+    ],
+    "operation": {
+      "permissions": [
+        "iap.googleapis.com/resources.egressViaIAP"
+      ]
+    },
+    "conditions": {
+      "iap.googleapis.com": {
+        "expression": \
+        "destination.is_registered == true && \
+         destination.agent_registry.resource_type == 'ENDPOINT' && ( \
+         destination.agent_registry.endpoint.name == 'projects/${PROJ_ID_GOV}/locations/${REGION}/endpoints/core-gapi-services' || \
+         destination.agent_registry.endpoint.name == 'projects/${PROJ_ID_GOV}/locations/${REGION}/endpoints/${ENDPOINT_ID}' || \
+         destination.agent_registry.endpoint.name == 'projects/${PROJ_NO_GOV}/locations/${REGION}/endpoints/${ENDPOINT_ID}')"
+      }
+    }
+  }
+]
+EOF
+```
+
+### policy
+
+```sh
+# set var
+export UAP_POLICY_NAME="uap-policy-${SLUG}"
+echo ${UAP_POLICY_NAME}
+```
+
+```sh
+# create iam access policy
+gcloud iam access-policies create ${UAP_POLICY_NAME} \
+  --details-rules=cfg/uap-rule-1.json \
+  --project=${PROJ_ID} \
+  --location=global
+```
+
+```sh
+# show iam access policy details
+gcloud iam access-policies describe ${UAP_POLICY_NAME} \
+  --project=${PROJ_ID} \
+  --location=global
+```
+
+### bind
+
+```sh
+# bind access policy to project resource
+gcloud iam policy-bindings create ${UAP_BINDING_NAME} \
+  --policy="projects/${PROJ_ID}/locations/global/accessPolicies/${UAP_POLICY_NAME}" \
+  --target-resource="//cloudresourcemanager.googleapis.com/projects/${PROJ_ID}" \
+  --project=${PROJ_ID} \
+  --location=global
+```
+
+```sh
+# show policy binding details
+gcloud iam policy-bindings describe ${UAP_BINDING_NAME} \
+  --project=${PROJ_ID} \
+  --location=global
+```
+
 ## iam principals
 
 agent identities
 - principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.container/projects/${PROJ_NO}
+
 - principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.platformContainer/aiplatform/projects/${PROJ_NO}
 - principal://agents.global.org-${ORG_ID}.system.id.goog/resources/aiplatform/projects/${PROJ_NO}/locations/${GE_LOCATION}/reasoningEngines/${RE_ENGINE_ID}
+
+- principalSet://agents.global.org-${ORG_ID}.system.id.goog/attribute.platformContainer/discoveryengine/projects/${PROJ_NO}
 - principal://agents.global.org-${ORG_ID}.system.id.goog/resources/discoveryengine/projects/${PROJ_NO}/locations/global/collections/default_collection/engines/${GE_ENGINE_ID}
 - principal://agents.global.org-${ORG_ID}.system.id.goog/resources/discoveryengine/projects/${PROJ_NO}/locations/global/engines/${GE_APP_ID}/assistants/default_assistant/agents/default/core_assistant
 - principal://agents.global.org-${ORG_ID}.system.id.goog/resources/discoveryengine/projects/${PROJ_NO}/locations/global/engines/${GE_APP_ID}/assistants/default_assistant/agents/default/deep_research

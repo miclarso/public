@@ -160,7 +160,7 @@ gcloud projects get-iam-policy ${PROJ_ID} \
   --format="table(bindings.role:label=ROLE, bindings.members:label=USER_OR_GROUP)"
 ```
 
-## ge app
+## gemini ent
 
 ```sh
 # set vars
@@ -172,9 +172,12 @@ echo ${GE_LOCATION}
 echo ${GE_APP_NAME}
 ```
 
+### app
+
 ```sh
 # create random app id
 export GE_APP_ID="${GE_APP_NAME}_$(python3 -c 'import time; print(int(time.time() * 1000))')"
+# GE_APP_ID="${GE_APP_NAME}_$(date +%s)"
 echo ${GE_APP_ID}
 ```
 
@@ -247,6 +250,22 @@ curl -X PATCH "https://${GE_LOCATION}-discoveryengine.googleapis.com/v1/projects
   }
 }
 EOF
+```
+
+### collection
+
+```sh
+# delete custom mcp collection (unlinks from engine and deletes dataConnector + dataStore)
+export MCP_COLLECTION_NAME=$(curl -s "https://discoveryengine.googleapis.com/v1alpha/projects/${PROJ_ID}/locations/global/collections" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+  -H "X-Goog-User-Project: ${PROJ_ID}" \
+  | jq -r --arg mcp "${MCP_NAME}" '.collections[] | select(.displayName == $mcp) | .name' | head -n 1)
+
+echo "Deleting collection: ${MCP_COLLECTION_NAME}"
+
+curl -X DELETE "https://discoveryengine.googleapis.com/v1alpha/${MCP_COLLECTION_NAME}" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+  -H "X-Goog-User-Project: ${PROJ_ID}"
 ```
 
 ### data connectors

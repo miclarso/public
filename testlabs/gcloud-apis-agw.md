@@ -50,7 +50,33 @@ gcloud services enable \
   dlp.googleapis.com
 ```
 
+## default apis
+
+```sh
+# apis enabled by default used by agent platform
+gcloud services enable \
+  cloudtrace.googleapis.com \
+  dataform.googleapis.com \
+  logging.googleapis.com \
+  monitoring.googleapis.com \
+  storage-component.googleapis.com \
+  storage.googleapis.com \
+  telemetry.googleapis.com \
+  serviceusage.googleapis.com \
+  servicemanagement.googleapis.com
+```
+
 ## changelog
+
+<tbd>
+- Business AI Code API
+- `businessaicode.googleapis.com`
+- tbd
+
+2026-08-14
+- Agent Identity auth managerAPI
+- `agentidentitycredentials.googleapis.com`
+- https://docs.cloud.google.com/iam/docs/reference/agentidentitycredentials/rest
 
 <tbd>
 - Service Extensions API
