@@ -648,6 +648,7 @@ uv --directory ${RE_AGENT_NAME} run python3 deploy_agent.py \
   --network-attachment=psc-na-${REGION} \
   --target-network=vnet-${SLUG} \
   --dns-domains="demo.com." \
+  --enable-telemetry \
   --env-var="PROXY_SERVER_URL=http://swp.demo.com:8888"
 ```
 
@@ -702,72 +703,179 @@ echo "https://console.cloud.google.com/agent-platform/runtimes/locations/${REGIO
 Or query the deployed agent directly from the CLI:
 
 ```sh
-# query agent runtime for usd to eur exchange rate
-curl -s -X POST \
-  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+# query reasoning engine
+curl -s -X POST "https://${REGION}-aiplatform.googleapis.com/v1/projects/${PROJ_ID}/locations/${REGION}/reasoningEngines/${RE_ENGINE_ID}:streamQuery" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
   -H "Content-Type: application/json" \
-  "https://${REGION}-aiplatform.googleapis.com/v1/projects/${PROJ_ID}/locations/${REGION}/reasoningEngines/${RE_ENGINE_ID}:streamQuery" \
-  -d '{
+-d @- <<EOF
+  {
     "class_method": "async_stream_query",
     "input": {
       "user_id": "test-user",
-      "message": "What is the exchange rate from USD to EUR?"
+      "message": "what is the exchange rate from usd to eur?"
     }
-  }'
+  }
+EOF
 ```
 
-### Verify Secure Web Proxy and Firewall logs
-
-Inspect Secure Web Proxy logs to confirm the request to `api.frankfurter.app`
-was matched and allowed by `swp-${SLUG}`:
+```sh
+# query reasoning engine (only print final answer)
+curl -s -X POST "https://${REGION}-aiplatform.googleapis.com/v1/projects/${PROJ_ID}/locations/${REGION}/reasoningEngines/${RE_ENGINE_ID}:streamQuery" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+  -H "Content-Type: application/json" \
+-d @- <<EOF | jq -r '.content.parts[]?.text // empty'
+  {
+    "class_method": "async_stream_query",
+    "input": {
+      "user_id": "test-user",
+      "message": "what is the exchange rate from gbp to jpy?"
+    }
+  }
+EOF
+```
 
 ```sh
-# view secure web proxy decision logs
-gcloud logging read \
-  "resource.type=networkservices.googleapis.com/Gateway AND resource.labels.gateway_name=swp-${SLUG}" \
+# query reasoning engine (print step by step trace)
+curl -s -X POST "https://${REGION}-aiplatform.googleapis.com/v1/projects/${PROJ_ID}/locations/${REGION}/reasoningEngines/${RE_ENGINE_ID}:streamQuery" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+  -H "Content-Type: application/json" \
+  -d @- <<EOF | jq -r '.content.parts[]? |
+  if .function_call then "CALL:   \(.function_call.name)(\(.function_call.args | tojson))"
+  elif .function_response then "RESULT: \(.function_response.response | tojson)"
+  elif .text then "ANSWER: \(.text)"
+  else empty end'
+  {
+    "class_method": "async_stream_query",
+    "input": {
+      "user_id": "test-user",
+      "message": "what is the exchange rate from aud to cad?"
+    }
+  }
+EOF
+```
+
+```sh
+# query reasoning engine (remove thought signature from trace)
+curl -s -X POST "https://${REGION}-aiplatform.googleapis.com/v1/projects/${PROJ_ID}/locations/${REGION}/reasoningEngines/${RE_ENGINE_ID}:streamQuery" \
+  -H "Authorization: Bearer $(gcloud auth application-default print-access-token)" \
+  -H "Content-Type: application/json" \
+  -d @- <<EOF | jq '.content.parts[]? | del(.thought_signature)'
+  {
+    "class_method": "async_stream_query",
+    "input": {
+      "user_id": "test-user",
+      "message": "what is the exchange rate from inr to chf?"
+    }
+  }
+EOF
+```
+
+### Logs
+
+#### Firewall
+
+```sh
+# show firewall logs
+gcloud logging read 'logName:"compute.googleapis.com%2Ffirewall"' \
+  --project=${PROJ_ID} \
   --limit=5 \
-  --format="table(
-    timestamp.date(tz=LOCAL):label=TIMESTAMP,
-    httpRequest.requestMethod:label=METHOD,
-    jsonPayload.enforcedGatewaySecurityPolicy.hostname:label=HOSTNAME,
-    httpRequest.status:label=STATUS,
+  --format="table( \
+    timestamp.date(tz=LOCAL):label=TIMESTAMP, \
+    jsonPayload.connection.src_ip:label=SRC_IP, \
+    jsonPayload.connection.dest_ip:label=DEST_IP, \
+    jsonPayload.connection.dest_port:label=PORT, \
+    jsonPayload.rule_details.reference.basename():label=RULE, \
+    jsonPayload.disposition:label=DISPOSITION, \
+    jsonPayload.rule_details.priority:label=RULE_PRIORITY
+  )"
+```
+
+#### SWP
+
+```sh
+# show swp logs
+gcloud logging read 'logName:"networkservices.googleapis.com%2Fgateway_requests"' \
+  --project=${PROJ_ID} \
+  --limit=5 \
+  --format="table( \
+    timestamp.date(tz=LOCAL):label=TIMESTAMP, \
+    resource.labels.gateway_name:label=GATEWAY, \
+    httpRequest.protocol:label=PROTOCOL, \
+    httpRequest.remoteIp:label=REMOTE_IP, \
+    httpRequest.serverIp:label=SERVER_IP, \
+    httpRequest.requestMethod:label=METHOD, \
+    jsonPayload.enforcedGatewaySecurityPolicy.hostname:label=HOSTNAME, \
+    httpRequest.status:label=STATUS, \
     jsonPayload.enforcedGatewaySecurityPolicy.matchedRules[0].action:label=ACTION
   )"
 ```
 
-Example output:
-
-```text
-TIMESTAMP            METHOD   HOSTNAME                 STATUS  ACTION
-YYYY-MM-DDTHH:MM:SS  CONNECT  api.frankfurter.dev:443  200     ALLOWED
-YYYY-MM-DDTHH:MM:SS  CONNECT  api.frankfurter.app:443  200     ALLOWED
-```
-
-Inspect Firewall logs to confirm traffic flowed from the PSC interface IP
-(`192.168.10.2`) to the Secure Web Proxy IP (`10.10.10.5:8888`) via rule `1001`
-in `fw-policy-${SLUG}`:
+#### Agent Runtime
 
 ```sh
-# view firewall policy logs for rule 1001
-gcloud logging read \
-  "logName=projects/${PROJ_ID}/logs/compute.googleapis.com%2Ffirewall AND jsonPayload.rule_details.priority=1001" \
-  --limit=5 \
-  --format="table(
-    timestamp.date(tz=LOCAL):label=TIMESTAMP,
-    jsonPayload.disposition:label=DISPOSITION,
-    jsonPayload.rule_details.priority:label=RULE_PRIORITY,
-    jsonPayload.rule_details.direction:label=DIRECTION,
-    jsonPayload.connection.src_ip:label=SRC_IP,
-    jsonPayload.connection.dest_ip:label=DEST_IP,
-    jsonPayload.connection.dest_port:label=PORT
+# show reasoning engine stderr logs (llm calls and tool http requests)
+gcloud logging read 'logName:"aiplatform.googleapis.com%2Freasoning_engine_stderr"' \
+  --project=${PROJ_ID} \
+  --limit=10 \
+  --format="table( \
+    timestamp.date(tz=LOCAL):label=TIMESTAMP, \
+    resource.labels.reasoning_engine_id:label=ENGINE_ID, \
+    textPayload:label=MESSAGE
   )"
 ```
 
-Example output:
+```sh
+# show reasoning engine stdout otel genai events
+gcloud logging read \
+  "logName:aiplatform.googleapis.com%2Freasoning_engine_stdout \
+   AND labels.\"event.name\":*" \
+  --project=${PROJ_ID} \
+  --limit=10 \
+  --format="table( \
+    timestamp.date(tz=LOCAL):label=TIMESTAMP, \
+    trace.basename().sub('^(.{8}).*$', '\1'):label=TRACE_ID, \
+    spanId:label=SPAN_ID, \
+    labels.\"event.name\":label=EVENT, \
+    jsonPayload.content.role:label=ROLE, \
+    jsonPayload.content.parts[0].function_call.name:label=TOOL_CALL, \
+    jsonPayload.content.parts[0].text:label=TEXT, \
+    jsonPayload.finish_reason:label=FINISH
+  )"
+```
 
-```text
-TIMESTAMP                DISPOSITION  RULE_PRIORITY  DIRECTION  SRC_IP        DEST_IP     PORT
-YYYY-MM-DDTHH:MM:SS.ZZZ  ALLOWED      1001           EGRESS     192.168.10.2  10.10.10.5  8888
+```sh
+# show reasoning engine inbound http access logs
+gcloud logging read \
+  "logName:aiplatform.googleapis.com%2Freasoning_engine_stdout
+   AND textPayload:/api/" \
+  --project=${PROJ_ID} \
+  --limit=5 \
+  --format="table( \
+    timestamp.date(tz=LOCAL):label=TIMESTAMP, \
+    resource.labels.reasoning_engine_id:label=ENGINE_ID, \
+    textPayload:label=HTTP_ACCESS
+  )"
+```
+
+### Traces
+
+```sh
+# fetch latest reasoning engine trace id
+export TRACE_ID=$(gcloud logging read 'logName:"aiplatform.googleapis.com%2Freasoning_engine_stdout" AND trace:*' \
+  --project=${PROJ_ID} --limit=1 --format="value(trace)")
+echo ${TRACE_ID}
+```
+
+```sh
+# show reasoning engine trace (otel span timeline)
+curl -s -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  "https://cloudtrace.googleapis.com/v1/projects/${PROJ_ID}/traces/${TRACE_ID}" \
+  | jq -r '["START_TIME","SPAN_NAME","OPERATION","MODEL_OR_TOOL"], (.spans | sort_by(.startTime)[] | [
+      .startTime,
+      .name,
+      (.labels."gen_ai.operation.name" // "-"),
+      (.labels."gen_ai.tool.name" // .labels."gen_ai.request.model" // "-")
+    ]) | @tsv' | column -t -s $'\t'
 ```
 
 ---
